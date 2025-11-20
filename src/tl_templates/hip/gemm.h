@@ -193,11 +193,11 @@ public:
           for (int local_id = 0; local_id < (kPack * local_size_a); local_id += (kPack * vec_size)) {
             auto [row, col] = reverse_index_map(lane_id, local_id);
             if constexpr (kPack == 1) {
-              *(float32x2*)(&A_local[j * kPack * local_size_b + local_id]) =
+              *(float32x2*)(&A_local[i * kPack * local_size_a + local_id]) =
                 *(float32x2*)(&A_shared[make_swizzle_layout<last_dim_a, sizeof(A_type)>(
                     l + row, r + col)]);
             } else {
-              *(float32x4*)(&A_local[j * kPack * local_size_b + local_id]) =
+              *(float32x4*)(&A_local[i * kPack * local_size_a + local_id]) =
                 *(float32x4*)(&A_shared[make_swizzle_layout<last_dim_a, sizeof(A_type)>(
                     l + row, r + col)]);
             }
