@@ -188,6 +188,7 @@ public:
             A_local[i * kPack * local_size_a + local_id] =
                 A_shared[make_swizzle_layout<last_dim_a, sizeof(A_type)>(
                     r + row, l + col)];
+          }
         } else {
           for (int local_id = 0; local_id < (kPack * local_size_a); local_id += (kPack * vec_size)) {
             auto [row, col] = reverse_index_map(lane_id, local_id);
