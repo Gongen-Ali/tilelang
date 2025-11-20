@@ -260,7 +260,7 @@ class AutotuneResult:
         if kernel_global_source and kernel_params:
             return JITKernel.from_database(
                 func=func,
-                kernel_global_source=kernel_global_source,
+                device_kernel_source=kernel_global_source,
                 kernel_lib_path=kernel_lib_path,
                 params=kernel_params,
                 target=target,
