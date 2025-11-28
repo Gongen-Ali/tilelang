@@ -173,6 +173,7 @@ GemmPy::GemmPy(Array<PrimExpr> args, BufferMap vmap) {
   }
   node->cCoords_ = Array<PrimExpr>(
       {args[17].as<PrimExpr>().value(), args[18].as<PrimExpr>().value()});
+  node->preshuffleB_ = args[19].as<Bool>().value();
   data_ = std::move(node);
 }
 

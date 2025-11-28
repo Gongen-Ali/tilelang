@@ -130,6 +130,10 @@ class GemmBase:
             zero = tvm.tir.const(0, "int32")
             return [zero, zero]
         return [coords[i] for i in range(len(coords))]
+    
+    @property
+    def preshuffle_B(self) -> bool:
+        return getattr(self.gemm_node, "preshuffleB", False)
 
     def get_region_base_offsets(self, region):
         """

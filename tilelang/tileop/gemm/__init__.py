@@ -132,6 +132,10 @@ class GemmPy(Node, Scriptable):
     @property
     def wg_wait(self):
         return self.wgWait
+    
+    @property
+    def preshuffle_B(self):
+        return self.preshuffleB
 
     def infer_layout(self, target: Target, thread_nums: int):
         """Infer the layout for the GEMM operation based on target architecture."""

@@ -26,6 +26,7 @@ def _gemm_impl(
     k_pack: int = 1,
     wg_wait: int = 0,
     mbar: tir.Buffer | None = None,
+    preshuffle_B: bool = False,
 ):
     """Shared GEMM implementation.
 
@@ -93,7 +94,7 @@ def _gemm_impl(
     C_coords = [r.min for r in C.region]
     return tir.call_intrin("handle", tir.op.Op.get(op_key), A, B, C, transpose_A, transpose_B, M, N,
                            K, policy, clear_accum, stride_a, stride_b, offset_a, offset_b, k_pack,
-                           wg_wait, mbarptr, C_coords[0], C_coords[1])
+                           wg_wait, mbarptr, C_coords[0], C_coords[1], preshuffle_B)
 
 
 # Public wrappers
@@ -137,6 +138,7 @@ def gemm_v2(
     k_pack: int = 1,
     wg_wait: int = 0,
     mbar: tir.Buffer | None = None,
+    preshuffle_B: bool = False,
 ):
     """GEMM v2: use op tl.gemm_py."""
     return _gemm_impl(
@@ -151,6 +153,7 @@ def gemm_v2(
         k_pack,
         wg_wait,
         mbar,
+        preshuffle_B,
     )
 
 
