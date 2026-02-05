@@ -1,7 +1,6 @@
 #pragma once
 
 #include "atomic.h"
-#include <ck_tile/core.hpp>
 #include <hip/amd_detail/amd_warp_functions.h>
 #include <hip/hip_bf16.h>
 #include <hip/hip_fp16.h>

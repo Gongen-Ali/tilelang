@@ -397,14 +397,6 @@ if os.environ.get("TL_CUTLASS_PATH", None) is None:
     else:
         logger.warning(CUTLASS_NOT_FOUND_MESSAGE)
 
-# Initialize COMPOSABLE_KERNEL paths
-if os.environ.get("TL_COMPOSABLE_KERNEL_PATH", None) is None:
-    ck_inc_path = os.path.join(THIRD_PARTY_ROOT, "composable_kernel", "include")
-    if os.path.exists(ck_inc_path):
-        os.environ["TL_COMPOSABLE_KERNEL_PATH"] = env.COMPOSABLE_KERNEL_INCLUDE_DIR = ck_inc_path
-    else:
-        logger.warning(COMPOSABLE_KERNEL_NOT_FOUND_MESSAGE)
-
 # Initialize TL_TEMPLATE_PATH
 if os.environ.get("TL_TEMPLATE_PATH", None) is None:
     tl_template_path = os.path.join(THIRD_PARTY_ROOT, "..", "src")
